@@ -1,0 +1,17 @@
+---
+# Install tasks for this roles
+- name: UPDATE APT CACHE
+  become: true
+  ansible.builtin.apt:
+    cache_valid_time: 3600
+    update_cache: true
+  changed_when: false
+  when:
+    - ansible_os_family|lower == 'debian'
+
+- name: MANAGE PACKAGES
+  become: true
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ tmux_packages }}"

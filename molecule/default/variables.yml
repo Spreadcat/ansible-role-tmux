@@ -1,0 +1,7 @@
+---
+tmux_owner: sc
+tmux_group: sc
+tmux_path_config: /home/sc/.tmux.conf
+tmux_config:
+  - unbind C-b
+  - set -g prefix C-a

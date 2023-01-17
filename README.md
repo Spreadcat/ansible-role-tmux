@@ -1,30 +1,55 @@
 # spreadcat.tmux
 
-Some general description of this role.
+Role that installs and configures tmux locally.
 
 ## Requirements
 
-The general requirements, like access or other stuff.
+None
 
 ## Role Variables
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
 ```yaml
-var1: value1
+tmux_path_config: "{{ lookup('env', 'HOME') }}/.tmux.conf"
 ```
 
-Some variable description.
+Default path to the tmux configuration file. The default is placed in the home directory of the user running the role.
+
+```yaml
+tmux_config: []
+```
+
+List of lines for the tmux configuration file.
 
 ## Other variables
 
 Second class variables, not immediately needed.
 
 ```yaml
-var1: value1
+tmux_pakcages:
+ - tmux
 ```
 
-Some variable description.
+List of package names that must be present.
+
+```yaml
+tmux_owner: "{{ lookup('env', 'USER') }}"
+```
+
+Name of the file owner for the tmux configuration.
+
+```yaml
+tmux_group: "{{ lookup('env', 'USER') }}"
+```
+
+Name of the file group for the tmux configuration.
+
+```yaml
+tmux_config_template: tmux.conf.j2
+```
+
+Name and path of the template file to use for the configuration file. The template uses the content of the variable `tmux_config`.
 
 ## Dependencies
 
@@ -38,7 +63,9 @@ Including an example of how to use your role (for instance, with variables passe
 ---
 - hosts: all
   vars:
-    var1: value1
+    tmux_config:
+      - unbind C-b
+      - set -g prefix C-a
   roles:
      - role: spreadcat.tmux
 ```

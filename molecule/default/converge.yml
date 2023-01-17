@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: MOLECULE - INCLUDE VARS
+      ansible.builtin.include_vars: 
+        file: ./variables.yml
+    - name: "Include spreadcat.tmux"
+      ansible.builtin.include_role:
+        name: "spreadcat.tmux"

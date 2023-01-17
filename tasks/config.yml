@@ -1,0 +1,9 @@
+---
+# Config tasks for this role
+- name: MANAGE CONFIG FILE
+  ansible.builtin.template:
+    dest: "{{ tmux_path_config }}"
+    src: "{{ tmux_config_template }}"
+    owner: "{{ tmux_owner }}"
+    group: "{{ tmux_group }}"
+    mode: '0750'

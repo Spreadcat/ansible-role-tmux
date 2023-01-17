@@ -1,0 +1,40 @@
+---
+# This is an example playbook to execute Ansible tests.
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+
+  - name: MOLECULE - INCLUDE VARIABLES
+    ansible.builtin.include_vars: ./variables.yml
+
+  - name: MOLECULE - VERIFY COMMAND IS PRESENT
+    ansible.builtin.command: tmux -V
+    register: _verify_command
+    changed_when: false
+    failed_when: _verify_command.rc != 0
+
+  - name: MOLECULE - VERIFY CONFIG FILE EXISTS
+    ansible.builtin.file:
+      state: file
+      path: "{{ tmux_path_config }}"
+      owner: "{{ tmux_owner }}"
+      group: "{{ tmux_group }}"
+      mode: '0750'
+    register: _verify_file
+    failed_when: (
+      (_verify_file is changed) or
+      (_verify_file is failed)
+      )
+
+  - name: MOLECULE - VERIFY CONFIG FILE CONTENT
+    ansible.builtin.lineinfile:
+      dest: "{{ tmux_path_config }}"
+      state: present
+      line: "{{ item }}"
+    loop: "{{ tmux_config }}"
+    register: _verify_content
+    failed_when: (
+      (_verify_content is changed) or
+      (_verify_content is failed)
+      )

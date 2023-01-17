@@ -1,0 +1,19 @@
+---
+# defaults file for tmux
+tmux_packages:
+  - tmux
+
+# Default path to the config file for tmux
+tmux_path_config: "{{ lookup('env', 'HOME') }}/.tmux.conf"
+
+# Default template path within ./templates for the config file.
+tmux_config_template: tmux.conf.j2
+
+# Default configuration for tmux
+tmux_config: []
+
+# Default user for tmux
+tmux_owner: "{{ lookup('env', 'USER') }}"
+
+# Default group for tmux
+tmux_group: "{{ lookup('env', 'USER') }}"
