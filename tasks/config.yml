@@ -7,4 +7,3 @@
     owner: "{{ tmux_owner }}"
     group: "{{ tmux_group }}"
     mode: '0750'
-
