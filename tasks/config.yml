@@ -1,6 +1,6 @@
 ---
 # Config tasks for this role
-- name: MANAGE CONFIG FILE
+- name: Config | Manage config file
   ansible.builtin.template:
     dest: "{{ tmux_path_config }}"
     src: "{{ tmux_config_template }}"
