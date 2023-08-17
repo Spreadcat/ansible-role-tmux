@@ -4,7 +4,7 @@ Role that installs and configures tmux locally.
 
 ## Requirements
 
-None
+* The role requires `gathered_facts: true` to be set.
 
 ## Role Variables
 
