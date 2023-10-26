@@ -11,7 +11,7 @@ Role that installs and configures tmux locally.
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
 ```yaml
-tmux_path_config: "{{ lookup('env', 'HOME') }}/.tmux.conf"
+tmux_path_config: "{{ lookup('ansibl.builtin.env', 'HOME') }}/.tmux.conf"
 ```
 
 Default path to the tmux configuration file. The default is placed in the home directory of the user running the role.
@@ -34,13 +34,13 @@ tmux_pakcages:
 List of package names that must be present.
 
 ```yaml
-tmux_owner: "{{ lookup('env', 'USER') }}"
+tmux_owner: "{{ lookup('ansibl.builtin.env', 'USER') }}"
 ```
 
 Name of the file owner for the tmux configuration.
 
 ```yaml
-tmux_group: "{{ lookup('env', 'USER') }}"
+tmux_group: "{{ lookup('ansibl.builtin.env', 'USER') }}"
 ```
 
 Name of the file group for the tmux configuration.

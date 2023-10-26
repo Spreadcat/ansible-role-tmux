@@ -4,7 +4,7 @@ tmux_packages:
   - tmux
 
 # Default path to the config file for tmux
-tmux_path_config: "{{ lookup('env', 'HOME') }}/.tmux.conf"
+tmux_path_config: "{{ lookup('ansible.builtin.env', 'HOME') }}/.tmux.conf"
 
 # Default template path within ./templates for the config file.
 tmux_config_template: "{{ role_path }}/templates/tmux.conf.j2"
@@ -13,7 +13,7 @@ tmux_config_template: "{{ role_path }}/templates/tmux.conf.j2"
 tmux_config: []
 
 # Default user for tmux
-tmux_owner: "{{ lookup('env', 'USER') }}"
+tmux_owner: "{{ lookup('ansible.builtin.env', 'USER') }}"
 
 # Default group for tmux
-tmux_group: "{{ lookup('env', 'USER') }}"
+tmux_group: "{{ lookup('ansible.builtin.env', 'USER') }}"
